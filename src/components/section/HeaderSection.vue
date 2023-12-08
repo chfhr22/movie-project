@@ -83,7 +83,7 @@
     align-items: center;
     justify-content: space-around;
     height: 700px;
-    background-image: url(https://image.tmdb.org/t/p/w500/xgGGinKRL8xeRkaAR9RMbtyk60y.jpg);
+    // background-image: url(https://image.tmdb.org/t/p/w500/xgGGinKRL8xeRkaAR9RMbtyk60y.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -107,6 +107,8 @@
             display: flex;
             // flex-wrap: wrap;
             flex-direction: column;
+            background-color: #00000031;
+            padding: 50px;
             
             .title {
             font-size: 2.5rem;
