@@ -1,21 +1,20 @@
 <template>
     <header id="header" role="banner">
         <div class="header__inner">
-            <div class="header__nav">
-                <h1><a href="/">movie</a></h1>
-                <nav>
-                    <ul>
-                        <li><a href="#">Recommend</a></li>
-                        <li><a href="#">Top10</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <h1><a href="/">Mega Movie</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="/">넷플릭스</a></li>
+                    <li><a href="/">디즈니</a></li>
+                    <li><a href="/">애플TV</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main class="main">
-        <DetailIntro v-if="movieBasic" :movieBasic="movieBasic" />
-        <DetailInfo v-if="movieInfo" :movieInfo="movieInfo" />
-        <DetailReview v-if="movieReview" :movieReview="movieReview" />
+        <DetailIntro v-if="movieBasic && movieInfo && movieCredits" :movieBasic="movieBasic" :movieInfo="movieInfo" :movieCredits="movieCredits"/>
+        <!-- <DetailInfo v-if="movieInfo" :movieInfo="movieInfo" /> -->
+        <!-- <DetailReview v-if="movieReview" :movieReview="movieReview" /> -->
         <DetailCredits v-if="movieCredits" :movieCredits="movieCredits" />
     </main>
 </template>
@@ -27,7 +26,7 @@ import axios from 'axios';
 
 import DetailIntro from "../components/detail/DetailIntro.vue";
 import DetailInfo from "../components/detail/DetailInfo.vue";
-import DetailReview from "../components/detail/DetailReview.vue";
+// import DetailReview from "../components/detail/DetailReview.vue";
 import DetailCredits from "../components/detail/DetailCredits.vue";
 
 export default {
@@ -36,14 +35,14 @@ export default {
     components: {
         DetailIntro,
         DetailInfo,
-        DetailReview,
+        // DetailReview,
         DetailCredits,
     },
 
     setup() {
         const movieBasic = ref(null);
         const movieInfo = ref(null);
-        const movieReview = ref(null);
+        // const movieReview = ref(null);
         const movieCredits = ref(null);
 
         const route = useRoute();
@@ -63,9 +62,9 @@ export default {
                 console.log(resMovieInfo.data);
 
 
-                const resMovieReview = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=${language}&api_key=${apiKey}`);
-                movieReview.value = resMovieReview.data;
-                console.log(resMovieReview.data)
+                // const resMovieReview = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=${language}&api_key=${apiKey}`);
+                // movieReview.value = resMovieReview.data;
+                // console.log(resMovieReview.data)
 
 
                 const resMovieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language}&api_key=${apiKey}`);
@@ -78,7 +77,7 @@ export default {
             }
         });
 
-        return { movieBasic, movieInfo, movieReview, movieCredits }
+        return { movieBasic, movieInfo, movieCredits }
     }
 }
 </script>

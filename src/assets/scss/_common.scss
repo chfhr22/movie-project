@@ -1,12 +1,15 @@
 body {
-    color: var(--black);
+    color: var(--white);
     background-color: var(--black);
 }
 .container {
-    width: 100%;
-    max-width: 1300px;
+    width: 1280px;
     margin: 0 auto;
-  }
+
+    @media(max-width: 1280px) {
+        width: 100%;
+    }
+}
 
 // 비디오 마우스 아이콘 효과
 .play__icon {
